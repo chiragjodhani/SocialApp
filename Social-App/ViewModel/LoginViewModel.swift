@@ -64,9 +64,8 @@ class LoginViewModel: ObservableObject {
     
     func checkUser(){
         let ref = Firestore.firestore()
-        let uid = Auth.auth().currentUser?.uid
-        
-        ref.collection("Users").whereField("uid", isEqualTo: uid!).getDocuments { (snap, error) in
+        let uid = Auth.auth().currentUser!.uid
+        ref.collection("Users").whereField("uid", isEqualTo: uid).getDocuments { (snap, error) in
             if error != nil {
                 self.registerUser.toggle()
                 self.isLoading = false
